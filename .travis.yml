@@ -69,6 +69,14 @@ before_install:
       sudo ln -s /usr/include/asm-generic /usr/include/asm;
     fi
 
+  - if [[ $os_build == "linux" && $os_arch == "armv7" ]]; then
+      sudo apt-get install -qq libc6-dev-i386;
+      sudo apt-get install -qq lib32gcc-5-dev;
+      sudo apt-get install -qq lib32stdc++-5-dev;
+      sudo apt-get install -qq g++-arm-linux-gnueabihf;
+      sudo ln -s /usr/include/asm-generic /usr/include/asm;
+    fi
+
 # linux cross compilation tools for windows development
   # remove files related to libwinpthread dll
   - if [[ $os_build == "windows" && $os_arch == "x86" ]]; then
