@@ -92,7 +92,7 @@ prepare_raspberry_toolchain() {
   prompt_msg "Downloading raspberry pi toolchain ..."
 
   #git clone https://github.com/raspberrypi/tools ${RPI_TOOLCHAIN_ROOT}
-  export PATH=${RPI_TOOLCHAIN_ROOT}/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:$PATH
+  export PATH=${RPI_TOOLCHAIN_ROOT}/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:$PATH
 }
 
 prepare_android_toolchain() {
