@@ -81,7 +81,7 @@ prepare_boost() {
   fi
   pushd ${BOOST_ROOT}
   pwd
-  ./bootstrap.sh
+  ./bootstrap.sh --with-bjam=BJAM
   popd
   popd
 }
