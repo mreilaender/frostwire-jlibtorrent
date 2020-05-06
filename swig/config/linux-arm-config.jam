@@ -2,7 +2,7 @@ import os ;
 
 using gcc : arm : arm-linux-gnueabihf-g++ :
     <cxxflags>-fPIC
-    <cxxflags>-m32-bit
+    <cxxflags>-m32
     <cxxflags>-std=c++14
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden
