@@ -28,6 +28,7 @@ prompt_msg "About to prepare BOOST ${BOOST_VERSION}"
 press_any_to_continue
 prepare_boost
 prepare_openssl
+prepare_raspberry_toolchain
 build_openssl
 prepare_libtorrent
 build_libraries
