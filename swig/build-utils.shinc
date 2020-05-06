@@ -14,6 +14,7 @@ LIBTORRENT_ROOT="${SRC}/libtorrent"
 OPENSSL_SOURCE="${SRC}/openssl-${OPENSSL_VERSION}"
 OPENSSL_ROOT="${SRC}/openssl"
 OPENSSL_NO_OPTS="no-afalgeng no-async no-autoalginit no-autoerrinit no-capieng no-cms no-comp no-deprecated no-dgram no-dso no-dtls no-dynamic-engine no-egd no-engine no-err no-filenames no-gost no-hw no-makedepend no-multiblock no-nextprotoneg no-posix-io no-psk no-rdrand no-sctp no-shared no-sock no-srp no-srtp no-static-engine no-stdio no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -Os"
+RPI_TOOLCHAIN_ROOT="${SRC}/rpi-tools"
 
 prompt_msg() {
  echo
@@ -83,6 +84,15 @@ prepare_boost() {
   ./bootstrap.sh --with-bjam=BJAM
   popd
   popd
+}
+
+prepare_raspberry_toolchain() {
+  abort_if_var_unset "RPI_TOOLCHAIN_ROOT" ${RPI_TOOLCHAIN_ROOT}
+
+  prompt_msg "Downloading raspberry pi toolchain ..."
+
+  #git clone https://github.com/raspberrypi/tools ${RPI_TOOLCHAIN_ROOT}
+  export PATH=${RPI_TOOLCHAIN_ROOT}/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:$PATH
 }
 
 prepare_android_toolchain() {
