@@ -10,6 +10,10 @@
 source build-utils.shinc
 check_min_req_vars
 
+create_folder_if_it_doesnt_exist ${SRC}
+prepare_boost
+press_any_to_continue
+
 export os_arch=arm
 export os_build=linux
 export SHARED_LIB=lib${LIBRARY_NAME}.so
@@ -23,10 +27,7 @@ export run_strip="strip --strip-unneeded -x bin/release/${os_build}/${os_arch}/$
 export run_objcopy="objcopy --only-keep-debug bin/release/${os_build}/${os_arch}/${SHARED_LIB} bin/release/${os_build}/{$os_arch}/${SHARED_LIB}.debug"
 #sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/i686-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam;
 
-create_folder_if_it_doesnt_exist ${SRC}
 prompt_msg "About to prepare BOOST ${BOOST_VERSION}"
-press_any_to_continue
-prepare_boost
 press_any_to_continue
 prepare_openssl
 prepare_raspberry_toolchain
