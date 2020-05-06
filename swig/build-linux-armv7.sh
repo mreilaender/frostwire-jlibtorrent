@@ -27,6 +27,7 @@ create_folder_if_it_doesnt_exist ${SRC}
 prompt_msg "About to prepare BOOST ${BOOST_VERSION}"
 press_any_to_continue
 prepare_boost
+press_any_to_continue
 prepare_openssl
 prepare_raspberry_toolchain
 build_openssl
