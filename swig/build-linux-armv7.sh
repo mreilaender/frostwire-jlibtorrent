@@ -22,7 +22,7 @@ export CXX=arm-linux-gnueabihf-g++
 export CC=arm-linux-gnueabihf-gcc
 export run_openssl_configure="./Configure linux-generic32 ${OPENSSL_NO_OPTS} -fPIC --prefix=${OPENSSL_ROOT}";
 export run_readelf="readelf -d bin/release/${os_build}/${os_arch}/${SHARED_LIB}"
-export run_bjam="${BOOST_ROOT}/b2 -j8 --user-config=config/${os_build}-${os_arch}-config.jam variant=release toolset=arm-linux-gnueabihf-gcc target-os=${os_build} location=bin/release/${os_build}/${os_arch}"
+export run_bjam="${BOOST_ROOT}/b2 -j8 --user-config=config/${os_build}-${os_arch}-config.jam variant=release toolset=gcc-${os_arch} target-os=${os_build} location=bin/release/${os_build}/${os_arch}"
 export run_strip="strip --strip-unneeded -x bin/release/${os_build}/${os_arch}/${SHARED_LIB}"
 export run_objcopy="objcopy --only-keep-debug bin/release/${os_build}/${os_arch}/${SHARED_LIB} bin/release/${os_build}/{$os_arch}/${SHARED_LIB}.debug"
 #sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/i686-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam;
