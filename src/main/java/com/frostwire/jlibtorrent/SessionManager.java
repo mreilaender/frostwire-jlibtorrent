@@ -470,6 +470,8 @@ public class SessionManager {
   }
 
   public TorrentHandle addTorrent(TorrentInfo torrentInfo, File saveDirectory) {
+    validateSessionCreatedOrThrow();
+
     error_code error_code = new com.frostwire.jlibtorrent.swig.error_code();
     add_torrent_params parameters = add_torrent_params.create_instance();
 
