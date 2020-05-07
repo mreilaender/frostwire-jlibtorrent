@@ -15,6 +15,7 @@ import com.frostwire.jlibtorrent.alerts.MetadataReceivedAlert;
 import com.frostwire.jlibtorrent.alerts.SessionStatsAlert;
 import com.frostwire.jlibtorrent.alerts.SocketType;
 import com.frostwire.jlibtorrent.alerts.TorrentAlert;
+import com.frostwire.jlibtorrent.exception.NoSessionException;
 import com.frostwire.jlibtorrent.swig.add_torrent_params;
 import com.frostwire.jlibtorrent.swig.address;
 import com.frostwire.jlibtorrent.swig.alert;
@@ -39,9 +40,11 @@ import com.frostwire.jlibtorrent.swig.torrent_status;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
@@ -476,6 +479,27 @@ public class SessionManager {
     torrent_handle torrent_handle = session.add_torrent(parameters, error_code);
 
     return new TorrentHandle(torrent_handle);
+  }
+
+  public List<TorrentHandle> getTorrents() {
+    validateSessionCreatedOrThrow();
+
+    return new SessionHandle(session).torrents();
+  }
+
+  public Optional<TorrentHandle> findTorrent(Sha1Hash sha1Hash) {
+    validateSessionCreatedOrThrow();
+
+    torrent_handle torrent_handle = session.find_torrent(sha1Hash.swig());
+
+    if(torrent_handle == null) return Optional.empty();
+    else return Optional.of(new TorrentHandle(torrent_handle));
+  }
+
+  private void validateSessionCreatedOrThrow() {
+    if(session == null) {
+      throw new NoSessionException();
+    }
   }
 
   /**
