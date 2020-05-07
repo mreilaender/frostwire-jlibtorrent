@@ -5,7 +5,6 @@ using gcc : arm : arm-linux-gnueabihf-g++ :
     <cxxflags>-std=c++11
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden
-    <linkflags>-m32
     <linkflags>-static-libstdc++
     <linkflags>-static-libgcc
     <linkflags>"-z noexecstack"
